@@ -2,9 +2,11 @@ version: "3"
 
 services:
   backend:
-    image: sanghoonjeong/activeminds-backend-dev:main
+    image: sanghoonjeong/activeminds-backend-dev:dev
     container_name: backend
     hostname: backend
+    env_file:
+      - .env
     expose:
       - "8080"
 
