@@ -9,6 +9,7 @@ on:
 jobs:
   deploy-dev:
     name: DEPLOY - DEV
+    environment: development
     build:
       runs-on: ubuntu-latest
       steps:
