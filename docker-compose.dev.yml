@@ -1,0 +1,26 @@
+version: "3"
+
+services:
+  backend:
+    image: sanghoonjeong/activeminds-backend-dev:main
+    container_name: backend
+    hostname: backend
+    expose:
+      - "8080"
+
+  nginx:
+    depends_on:
+      - backend
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
+
+#  ai:
+#    image: sanghoonjeong/activeminds-ai-dev:main
+#    container_name: ai
+#    hostname: ai
+#    expose:
+#      - "0000"
