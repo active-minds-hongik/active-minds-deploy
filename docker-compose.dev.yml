@@ -16,7 +16,7 @@ services:
     hostname: ai
     ports:
       - "5000:5000"
-      -
+
   nginx:
     depends_on:
       - backend
