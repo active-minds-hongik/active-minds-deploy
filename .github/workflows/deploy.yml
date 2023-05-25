@@ -45,10 +45,11 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             sh ~/srv/ubuntu/deploy.sh
-            echo "start docker-compose up: ubuntu"
+            echo "rm container, images"
             sudo docker stop $(sudo docker ps -a -q)
             sudo docker rm $(sudo docker ps -a -q)
             sudo docker rmi $(sudo docker images -q)
+            echo "start docker-compose up: ubuntu"
             sudo docker-compose -f ~/srv/ubuntu/docker-compose.dev.yml pull
             sudo docker-compose -f ~/srv/ubuntu/docker-compose.dev.yml --env-file ~/srv/ubuntu/.env up --build -d
             sudo docker system prune --all -f
