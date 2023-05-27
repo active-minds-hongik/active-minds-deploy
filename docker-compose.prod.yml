@@ -1,0 +1,29 @@
+version: "3"
+
+services:
+  backend:
+    image: sanghoonjeong/activeminds-backend-prod:prod
+    container_name: backend
+    hostname: backend
+    env_file:
+      - .env
+    expose:
+      - "8080"
+
+  ai:
+    image: sanghoonjeong/activeminds-ai-prod:prod
+    container_name: ai
+    hostname: ai
+    ports:
+      - "5000:5000"
+
+  nginx:
+    depends_on:
+      - backend
+      - ai
+    restart: always
+    build:
+      dockerfile: Dockerfile
+      context: ./nginx
+    ports:
+      - "80:80"
